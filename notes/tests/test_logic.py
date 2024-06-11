@@ -21,7 +21,7 @@ class TestNoteCreation(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.notes_counts = Note.objects.count()
-        cls.user = User.objects.create(username='Бен Афлик')
+        cls.user = User.objects.create(username='Вася Помидоров')
         cls.auth_client = Client()
         cls.auth_client.force_login(cls.user)
         cls.form_data = {'text': cls.NOTE_TEXT, 'title': cls.NOTE_TITLE,
@@ -64,7 +64,7 @@ class TestNoteEditDelete(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.notes_counts = Note.objects.count()
-        cls.author = User.objects.create(username='Автор заметки')
+        cls.author = User.objects.create(username='Вася Помидоров')
         cls.note = Note.objects.create(
             title='Заголовок',
             slug='Slug',
@@ -73,7 +73,7 @@ class TestNoteEditDelete(TestCase):
         )
         cls.author_client = Client()
         cls.author_client.force_login(cls.author)
-        cls.reader = User.objects.create(username='Читатель')
+        cls.reader = User.objects.create(username='Петя Телевизоров')
         cls.reader_client = Client()
         cls.reader_client.force_login(cls.reader)
         cls.edit_url = reverse('notes:edit', args=(cls.note.slug,))
